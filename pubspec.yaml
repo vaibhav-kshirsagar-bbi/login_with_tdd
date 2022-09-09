@@ -38,6 +38,7 @@ dependencies:
   validators: ^3.0.0
   equatable: ^2.0.5
   shared_preferences: ^2.0.15
+  dartz: ^0.10.1
 
 
 dev_dependencies:
