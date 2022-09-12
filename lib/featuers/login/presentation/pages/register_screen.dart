@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:login_page_tdd/core/featuers/login/presentation/bloc/login_bloc.dart';
+import 'package:login_page_tdd/featuers/login/presentation/bloc/login_bloc.dart';
 
 import '../widgets/buttons.dart';
 import 'package:validators/validators.dart';

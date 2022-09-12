@@ -1,4 +1,4 @@
-import 'package:login_page_tdd/core/featuers/login/domain/entity/user_details.dart';
+import 'package:login_page_tdd/featuers/login/domain/entity/user_details.dart';
 
 class UserDetailModel extends UserDetails{
 

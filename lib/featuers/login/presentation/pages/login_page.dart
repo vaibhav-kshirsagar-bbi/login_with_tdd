@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:login_page_tdd/core/featuers/login/presentation/widgets/buttons.dart';
+import 'package:login_page_tdd/featuers/login/presentation/widgets/buttons.dart';
 
 import '../bloc/login_bloc.dart';
 

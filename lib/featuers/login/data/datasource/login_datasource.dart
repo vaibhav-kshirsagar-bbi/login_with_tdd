@@ -1,9 +1,10 @@
 import 'dart:convert';
 
-import 'package:login_page_tdd/core/errors/exceptions.dart';
-import 'package:login_page_tdd/core/featuers/login/domain/entity/user_details.dart';
+
+import 'package:login_page_tdd/featuers/login/domain/entity/user_details.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../../core/errors/exceptions.dart';
 import '../model/user_details_model.dart';
 
 abstract class LoginDataSource {

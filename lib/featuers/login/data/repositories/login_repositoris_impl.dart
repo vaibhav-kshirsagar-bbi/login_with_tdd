@@ -1,14 +1,16 @@
 import 'dart:ffi';
 
 import 'package:dartz/dartz.dart';
-import 'package:login_page_tdd/core/errors/exceptions.dart';
-import 'package:login_page_tdd/core/errors/failure.dart';
-import 'package:login_page_tdd/core/featuers/login/data/datasource/login_datasource.dart';
-import 'package:login_page_tdd/core/featuers/login/data/model/user_details_model.dart';
-import 'package:login_page_tdd/core/featuers/login/domain/entity/user_details.dart';
-import 'package:login_page_tdd/core/featuers/login/domain/repositories/login_repositories.dart';
 
-import '../../../../errors/failure.dart';
+import 'package:login_page_tdd/featuers/login/data/datasource/login_datasource.dart';
+import 'package:login_page_tdd/featuers/login/data/model/user_details_model.dart';
+import 'package:login_page_tdd/featuers/login/domain/entity/user_details.dart';
+import 'package:login_page_tdd/featuers/login/domain/repositories/login_repositories.dart';
+
+import '../../../../core/errors/exceptions.dart';
+import '../../../../core/errors/failure.dart';
+
+
 
 class LoginRepositoriesImpl extends LoginRepositories {
   final LoginDataSource loginDataSource;

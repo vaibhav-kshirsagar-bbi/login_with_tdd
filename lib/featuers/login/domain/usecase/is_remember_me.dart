@@ -1,7 +1,8 @@
 
 import 'package:dartz/dartz.dart';
 
-import '../../../../errors/failure.dart';
+
+import '../../../../core/errors/failure.dart';
 import '../repositories/login_repositories.dart';
 
 class IsRememberMe {

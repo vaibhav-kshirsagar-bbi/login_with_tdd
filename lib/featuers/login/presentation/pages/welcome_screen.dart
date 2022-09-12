@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:login_page_tdd/core/featuers/login/presentation/bloc/login_bloc.dart';
-import 'package:login_page_tdd/core/featuers/login/presentation/widgets/buttons.dart';
+import 'package:login_page_tdd/featuers/login/presentation/bloc/login_bloc.dart';
+import 'package:login_page_tdd/featuers/login/presentation/widgets/buttons.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
