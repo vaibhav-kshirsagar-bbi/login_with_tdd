@@ -125,7 +125,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         obscureText: true,
                         decoration:  InputDecoration(
                           hintText: "Enter Password",
-                          errorText: RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@ #\$&*~]).{8,}$').hasMatch(userPassword!.text.toString()) || userPassword!.text.toString()=="" ? null : "password must contain 1 lower,upper,special\nand numeric",
+                          //errorText: RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@ #\$&*~]).{8,}$').hasMatch(userPassword!.text.toString()) || userPassword!.text.toString()=="" ? null : "password must contain 1 lower,upper,special\nand numeric",
 
                           border: const OutlineInputBorder(
                             borderRadius: BorderRadius.all(
@@ -150,7 +150,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           text: "Sign IN",
                           onPress: (){
 
-                            BlocProvider.of<LoginBloc>(context).loadHomeScreen();
+                            BlocProvider.of<LoginBloc>(context).checkLogin(userName!.text, userPassword!.text);
 
                           },
                         )

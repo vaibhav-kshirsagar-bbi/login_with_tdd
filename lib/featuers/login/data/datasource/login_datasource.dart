@@ -37,11 +37,14 @@ class LoginDataSourceImpl implements LoginDataSource {
 
     String? data = sharedPreferences.getString(SCREEN_NUMBER);
 
+    print("in get screen number");
+
     if(data!= null){
       return Future.value(data);
     }
     else{
       throw CacheException();
+
     }
 
 
@@ -50,11 +53,21 @@ class LoginDataSourceImpl implements LoginDataSource {
   @override
   Future<UserDetailModel> getUserDetail() {
 
+    print("in get user details");
+
+
     String? data = sharedPreferences.getString(USER_DETAILS);
 
     if(data!= null){
-      return Future.value(UserDetailModel.fromJson(
-          jsonDecode(data.toString())));
+
+      List<String> str = data.replaceAll("{","").replaceAll("}","").replaceAll("\"","").replaceAll("'","").split(",");
+      Map<String,dynamic> result = {};
+      for(int i=0;i<str.length;i++){
+        List<String> s = str[i].split(":");
+        result.putIfAbsent(s[0].trim(), () => s[1].trim());
+      }
+
+      return Future.value(UserDetailModel.fromJson(result));
     }
     else{
       throw CacheException();
@@ -66,6 +79,8 @@ class LoginDataSourceImpl implements LoginDataSource {
 
   @override
   Future<bool> isRememberMe() {
+
+    print("in is rememberme");
 
 
     bool? data = sharedPreferences.getBool(IS_REMEMBER_ME);
@@ -84,6 +99,8 @@ class LoginDataSourceImpl implements LoginDataSource {
   @override
   Future<bool> login(String userId, String password) async {
 
+    print("in login");
+
     UserDetailModel userDetailModel = await getUserDetail();
 
     if (userDetailModel.userId == userId &&
@@ -96,17 +113,21 @@ class LoginDataSourceImpl implements LoginDataSource {
 
   @override
   Future setIsRememberMe(bool value) {
+
+    print("in set remember me");
     return Future.value(sharedPreferences.setBool(IS_REMEMBER_ME, value));
   }
 
   @override
   Future setScreenNumber(String screenNumber) {
+    print("in set screen number");
     return Future.value(
         sharedPreferences.setString(SCREEN_NUMBER, screenNumber));
   }
 
   @override
   Future setUserDetails(UserDetailModel userDetailModel) {
+    print("in set user details");
     final value = userDetailModel.toJson().toString();
 
     return Future.value(sharedPreferences.setString(USER_DETAILS, value));

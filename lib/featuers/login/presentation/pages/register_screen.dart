@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:login_page_tdd/featuers/login/domain/entity/user_details.dart';
 import 'package:login_page_tdd/featuers/login/presentation/bloc/login_bloc.dart';
 
 import '../widgets/buttons.dart';
@@ -287,7 +288,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                 isPasswordEightCharecter &&
                                 hasPasswordOneNumber) {
                               BlocProvider.of<LoginBloc>(context)
-                                  .loadSingInPage();
+                                  .saveUserDetails(UserDetails(name: nameController.text, age: int.parse(ageController.text), userId: emailController.text, password: passwordController.text));
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(

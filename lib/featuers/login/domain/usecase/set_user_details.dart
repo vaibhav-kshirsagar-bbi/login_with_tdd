@@ -13,7 +13,9 @@ class SetUserDetails {
 
   SetUserDetails(this.repository);
 
-  Future<Either<Failure, Void>> call({required UserDetails userDetails}) async {
+  Future<Either<Failure, bool>> call({required UserDetails userDetails}) async {
     return await repository.setUserDetails(userDetails);
   }
 }
+
+

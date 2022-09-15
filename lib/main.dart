@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:login_page_tdd/featuers/login/domain/repositories/login_repositories.dart';
+import 'package:login_page_tdd/featuers/login/domain/usecase/get_screen_number.dart';
 import 'package:login_page_tdd/featuers/login/presentation/pages/home_page.dart';
 import 'package:login_page_tdd/featuers/login/presentation/pages/login_page.dart';
 import 'package:login_page_tdd/featuers/login/presentation/pages/register_screen.dart';
@@ -8,7 +10,14 @@ import 'package:login_page_tdd/featuers/login/presentation/pages/welcome_screen.
 import 'featuers/login/presentation/bloc/login_bloc.dart';
 import 'featuers/login/presentation/pages/register_done_screen.dart';
 
-void main() {
+import 'package:login_page_tdd/injection_container.dart' as di;
+
+import 'injection_container.dart';
+
+Future<void> main() async {
+
+  WidgetsFlutterBinding.ensureInitialized();
+  await di.init();
   runApp(const MyApp());
 }
 
@@ -33,11 +42,17 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: BlocProvider(
-        create: (context) => LoginBloc(),
+        create: (context) =>  sl<LoginBloc>(),
         child: BlocBuilder<LoginBloc, LoginState>(
           builder: (context, state) {
 
-            if(state is RegisterState){
+            print("in bloc builde");
+
+            if(state is WelcomeState){
+
+              return const WelcomeScreen();
+
+            }else if(state is RegisterState){
 
               return const RegisterPage();
 
@@ -55,10 +70,8 @@ class MyApp extends StatelessWidget {
 
             }
 
-
-
+            BlocProvider.of<LoginBloc>(context).getSavedScreenNumber();
             return const WelcomeScreen();
-
 
           },
         ),

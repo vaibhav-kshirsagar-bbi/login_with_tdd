@@ -12,5 +12,6 @@ class IsRememberMe {
 
   Future<Either<Failure, bool>> call() async {
     return await repository.isRememberMe();
+
   }
 }

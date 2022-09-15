@@ -20,15 +20,17 @@ class LoginRepositoriesImpl extends LoginRepositories {
   @override
   Future<Either<Failure, String>> getScreenNumber() async {
     try {
+
       return Future.value(Right(await loginDataSource.getScreenNumber()));
     } on CacheException {
-      return Future.value(Left(CacheFailure as Failure));
+      return Future.value(Left(CacheFailure()));
     }
   }
 
   @override
   Future<Either<Failure, UserDetails>> getUserDetail() async {
     try {
+
       return Future.value(Right(await loginDataSource.getUserDetail()));
     } on CacheException {
       return Future.value(Left(CacheFailure as Failure));
@@ -40,7 +42,7 @@ class LoginRepositoriesImpl extends LoginRepositories {
     try {
       return Future.value(Right(await loginDataSource.isRememberMe()));
     } on CacheException {
-      return Future.value(Left(CacheFailure as Failure));
+      return Future.value(Left(CacheFailure()));
     }
   }
 
@@ -49,31 +51,31 @@ class LoginRepositoriesImpl extends LoginRepositories {
     try {
       return Future.value(Right(await loginDataSource.login(userId, password)));
     } on CacheException {
-      return Future.value(Left(CacheFailure as Failure));
+      return Future.value(Left(CacheFailure()));
     }
   }
 
   @override
-  Future<Either<Failure, Void>> setIsRememberMe(bool value) async {
+  Future<Either<Failure, bool>> setIsRememberMe(bool value) async {
     try {
       return Future.value(Right(await loginDataSource.setIsRememberMe(value)));
     } on CacheException {
-      return Future.value(Left(CacheFailure as Failure));
+      return Future.value(Left(CacheFailure()));
     }
   }
 
   @override
-  Future<Either<Failure, Void>> setScreenNumber(String screenNumber) async {
+  Future<Either<Failure, bool>> setScreenNumber(String screenNumber) async {
     try {
       return Future.value(
           Right(await loginDataSource.setScreenNumber(screenNumber)));
     } on CacheException {
-      return Future.value(Left(CacheFailure as Failure));
+      return Future.value(Left(CacheFailure()));
     }
   }
 
   @override
-  Future<Either<Failure, Void>> setUserDetails(UserDetails userDetails) async {
+  Future<Either<Failure, bool>> setUserDetails(UserDetails userDetails) async {
     try {
       return Future.value(Right(await loginDataSource.setUserDetails(
           UserDetailModel(
@@ -82,7 +84,7 @@ class LoginRepositoriesImpl extends LoginRepositories {
               userId: userDetails.userId,
               password: userDetails.password))));
     } on CacheException {
-      return Future.value(Left(CacheFailure as Failure));
+      return Future.value(Left(CacheFailure()));
     }
   }
 }

@@ -11,7 +11,7 @@ class SetIsRememberMe {
 
   SetIsRememberMe(this.repository);
 
-  Future<Either<Failure, Void>> call({required bool value}) async {
+  Future<Either<Failure, bool>> call({required bool value}) async {
     return await repository.setIsRememberMe(value);
   }
 }

@@ -22,7 +22,9 @@ class _HomePageState extends State<HomePage> {
             child: CustomButton(
                 text: "Log Out",
                 onPress: (){
-                  BlocProvider.of<LoginBloc>(context).loadLoginScreen();
+
+                  BlocProvider.of<LoginBloc>(context).loadSingInPage();
+
                 }
             ),
           ),

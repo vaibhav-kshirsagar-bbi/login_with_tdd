@@ -11,6 +11,9 @@ class RegisterDoneScreen extends StatefulWidget {
 }
 
 class _RegisterDoneScreenState extends State<RegisterDoneScreen> {
+
+  bool? value=false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,12 +32,37 @@ class _RegisterDoneScreenState extends State<RegisterDoneScreen> {
           )),
 
 
-          SizedBox(height: MediaQuery.of(context).size.height/1.7,),
 
+
+
+
+
+          SizedBox(height: MediaQuery.of(context).size.height/1.9,),
+
+
+          Row(
+            children: [
+
+              Checkbox(
+                value: value,
+                onChanged: (bool? val) {
+                  setState(() {
+                    this.value = val;
+                  });
+                },
+              ), //
+
+              Text("Remember me"),
+
+            ],
+          ),
 
           CustomButton(
               text: "Sign In",
               onPress: (){
+
+                BlocProvider.of<LoginBloc>(context).saveIsRememberMe(value!);
+
                 BlocProvider.of<LoginBloc>(context).loadLoginScreen();
               }
           ),

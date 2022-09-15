@@ -4,6 +4,7 @@ part of 'login_bloc.dart';
 abstract class LoginEvent {}
 
 
+class WelcomeEvent extends LoginEvent{}
 
 class RegisterEvent extends LoginEvent{}
 

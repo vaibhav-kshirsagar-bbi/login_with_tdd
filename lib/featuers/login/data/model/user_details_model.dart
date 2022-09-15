@@ -9,7 +9,7 @@ class UserDetailModel extends UserDetails{
 
   factory UserDetailModel.fromJson(Map<String,dynamic> json){
 
-    return UserDetailModel(name: json["name"], age: json["age"], userId: json["userId"], password: json ["password"]);
+    return UserDetailModel(name: json["name"], age: int.parse(json["age"]), userId: json["userId"], password: json ["password"]);
 
   }
 
