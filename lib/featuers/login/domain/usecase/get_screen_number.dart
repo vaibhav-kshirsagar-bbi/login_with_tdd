@@ -12,5 +12,6 @@ class GetScreenNumber {
 
   Future<Either<Failure, String>> call() async {
     return await repository.getScreenNumber();
+
   }
 }

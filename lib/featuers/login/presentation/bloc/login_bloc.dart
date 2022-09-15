@@ -172,10 +172,11 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
               b=r;
             });
 
-    if(b!=null)
+    if(b!=null) {
       return b!;
-    else
+    } else {
       return false;
+    }
 
   }
 

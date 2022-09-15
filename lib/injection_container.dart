@@ -35,6 +35,8 @@ async {
     sl.registerLazySingleton(() => SetUserDetails(sl()));
 
 
+
+
   // repository
 
     sl.registerLazySingleton<LoginRepositories>(() => LoginRepositoriesImpl(loginDataSource: sl()));

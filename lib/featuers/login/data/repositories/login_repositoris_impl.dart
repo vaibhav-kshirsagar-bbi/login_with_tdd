@@ -33,7 +33,7 @@ class LoginRepositoriesImpl extends LoginRepositories {
 
       return Future.value(Right(await loginDataSource.getUserDetail()));
     } on CacheException {
-      return Future.value(Left(CacheFailure as Failure));
+       return  Future.value(Left(CacheFailure as Failure));
     }
   }
 

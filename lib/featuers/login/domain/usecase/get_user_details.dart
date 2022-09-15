@@ -13,6 +13,7 @@ class GetUserDetails {
 
   GetUserDetails(this.repository);
 
+
   Future<Either<Failure, UserDetails>> call() async {
     return await repository.getUserDetail();
   }
