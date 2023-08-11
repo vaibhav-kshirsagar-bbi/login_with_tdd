@@ -28,6 +28,27 @@ jobs:
           ln -s /Users/admin/Documents/softwares/flutter_setup/flutter_$FLUTTER_VERSION flutter
 
       - run: flutter pub get
+      
+      - name: Testing
+        run: |
+              echo "hello"
+              echo "byee"
+              
+              
+      - name : Running test cases
+        run: |
+             ./run_test.sh packages
+             ./run_test.sh apps
+             ./run_test.sh apps
+
+      - name: Running KIP's
+        run: python3 cicd_log_generator.py
+
+
+      - name: Static code analysis
+        if: always()
+        run: flutter analyze lib
+
 
 #       - name: Static code analysis
 #         if: always()
