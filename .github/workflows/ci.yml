@@ -1,0 +1,122 @@
+name: CI
+on:
+  pull_request:
+    branches:
+      - main
+
+env:
+  PROJECT_ID: login_with_tdd
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  flutter_test:
+    name: Run flutter test and analyze
+    runs-on: self-hosted
+    
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup path
+        env:
+          FLUTTER_VERSION: 3.10.6
+        run: |
+          cd /Users/admin/Documents/softwares/flutter_setup
+          rm -f flutter
+          ln -s /Users/admin/Documents/softwares/flutter_setup/flutter_$FLUTTER_VERSION flutter
+
+      - run: flutter pub get
+
+#       - name: Static code analysis
+#         if: always()
+#         run: flutter analyze lib
+
+#      - name: Static code analysis report
+#        if: always()
+#        run: bash scripts/analyze_build.sh
+#
+#      - name: Unit tests
+#        if: always()
+#        run: flutter test test/*
+#
+#      - name: Unit tests report
+#        if: always()
+#        run: bash scripts/test_build.sh
+#
+#      - name: Lines of code and cyclomatic complexity
+#        if: always()
+#        run: bash scripts/loc_and_cyclomatic_complexity.sh
+#
+#      - name: Export Project Info
+#        if: always()
+#        run: bash scripts/export_project_info.sh
+#
+#      - name: Update KPIs
+#        if: always()
+#        run: python3 scripts/kpi_manager.py "$PROJECT_ID" "$WORKFLOW_ID"
+
+
+
+#  build_app:
+#    name: Build iOS app and android app
+#    needs: [flutter_test]
+#    runs-on: self-hosted
+#    if: always()
+#    steps:
+#      - uses: actions/checkout@v2
+#
+#      - name: Setup path
+#        env:
+#          FLUTTER_VERSION: 3.7.6
+#        run: |
+#          cd /Users/admin/Documents/softwares/flutter_setup
+#          rm -f flutter
+#          ln -s /Users/admin/Documents/softwares/flutter_setup/flutter_$FLUTTER_VERSION flutter
+#
+#      #       - run: |
+#      #           cd /Users/admin/Library/Caches/CocoaPods
+#      #           rm -r Pods
+#
+#      - run: flutter doctor
+#
+#      - run: flutter clean
+#
+#      - run: flutter pub get
+#
+#      - name: Download app.zip
+#        run: curl https://s3.eu-west-1.amazonaws.com/bb.german.applications/2023/Flutter/DEAS8146/resources/app.zip --output ./assets/resources/app.zip
+#
+#      - name: Create apk
+#        run: flutter build apk --obfuscate --split-debug-info="$HOME/Desktop"
+#
+#      - name: Upload to firesbase distribution
+#        run: bash upload_android_apk.sh
+#
+#      - run: cd ios && pod deintegrate
+#
+#      - run: cd ios && pod repo update
+#
+#      - name: Create ipa
+#        run: flutter build ipa --release --export-options-plist=export_options.plist --no-tree-shake-icons --obfuscate --split-debug-info="$HOME/Desktop"
+#
+#      - name: Upload to Apple
+#        env:
+#          BB_DEVELOPER_ACC_PASSWORD: ${{ secrets.BB_DEVELOPER_ACC_PASSWORD }}
+#        run: xcrun altool --upload-app --type ios --file build/ios/ipa/neuro-cds.ipa -u "developer.boermbruckmeier@gmail.com" -p "$BB_DEVELOPER_ACC_PASSWORD"
+#
+##      - name: Upload to BB Record
+##        run: cd ./build/ios/ipa/ && curl -k --location --request POST 'https://cpms.bbinfotech.com/uploadTest/app_build/upload.php' --form 'upload_file=@neuro-cds.ipa'
+#
+#      - name: Cleanup
+#        if: always()
+#        run: |
+#          rm -f ./assets/resources/app.zip
+#          flutter clean
+#          rm /Users/admin/Documents/softwares/flutter_setup/flutter
+#          cd ios && pod deintegrate
+#          rm -f ./build/app/outputs/flutter-apk/app-release.apk
+#          rm -f ./build/app/outputs/flutter-apk/app-debug.apk
+#          rm -f ./build/app/outputs/flutter-apk/app.apk
+#          rm -f ./build/app/outputs/flutter-apk/app.apk.sha1
